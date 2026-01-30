@@ -1,0 +1,95 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #111;
+  color: white;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #ff6347;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #ff8566;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #fff;
+  color: #ff6347;
+}
+
+/* Social Icons */
+.hero-socials {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  font-size: 1.5rem;
+}
+
+.hero-socials a {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.hero-socials a:hover {
+  color: #ff6347;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Light Theme */
+:root[data-theme="light"] {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #020617;
+  --muted: #475569;
+  --primary: #2563eb;
+}
+
+/* Dark Theme */
+:root[data-theme="dark"] {
+  --bg: #020617;
+  --card: #020617;
+  --text: #ffffff;
+  --muted: #cbd5f5;
+  --primary: #38bdf8;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}

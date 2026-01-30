@@ -1,0 +1,21 @@
+:root[data-theme="light"] {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #020617;
+  --primary: #2563eb;
+  --border: #e2e8f0;
+}
+
+:root[data-theme="dark"] {
+  --bg: #020617;
+  --card: #111827;
+  --text: #ffffff;
+  --primary: #38bdf8;
+  --border: #1e293b;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
