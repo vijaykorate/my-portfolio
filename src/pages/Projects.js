@@ -4,20 +4,34 @@ import "../styles/Projects.css";
 
 const projects = [
   {
-    title: "CRUD App",
-    desc: "A clean and simple CRUD application demonstrating Create, Read, Update, and Delete operations using structured code and React.",
+    title: "Atomic-Blog",
+    desc: "A structured React CRUD application enabling users to create, read, update, and delete blog posts seamlessly.",
+    link: "https://github.com/vijaykorate/Atomic-Blog",
   },
   {
     title: "Eat-N-Split",
     desc: "A JavaScript entertainment hub showcasing dynamic content, UI interactions, and frontend best practices.",
+    link: "https://github.com/vijaykorate/Eat-N-Split",
   },
   {
     title: "WorldWise",
     desc: "A React world map app to track travels by cities and countries, visualize journeys, and manage history.",
+    link: "https://github.com/vijaykorate/WorldWise",
   },
   {
     title: "Entertainment Hub",
     desc: "A dynamic JavaScript-based hub for interactive UI and core frontend concepts in action.",
+    link: "https://github.com/vijaykorate/Entertainment-Hub",
+  },
+  {
+    title: "Classy-Weather",
+    desc: "A sleek React weather app that fetches real-time data to display forecasts with elegant UI and animations.",
+    link: "https://github.com/vijaykorate/Classy-Weather",
+  },
+  {
+    title: "React-Quiz",
+    desc: "An interactive React quiz app that tests knowledge with dynamic questions, scoring, and instant feedback.",
+    link: "https://github.com/vijaykorate/React-Quiz",
   },
 ];
 
@@ -37,7 +51,7 @@ const Projects = () => (
           className="project-card"
           whileHover={{
             scale: 1.05,
-            boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+            boxShadow: "0px 5px 15px rgba(0,0,0,0.3)",
           }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,6 +59,14 @@ const Projects = () => (
         >
           <h3>{proj.title}</h3>
           <p>{proj.desc}</p>
+          <a
+            href={proj.link}
+            target="_blank"
+            rel="noreferrer"
+            className="source-btn"
+          >
+            Source Code
+          </a>
         </motion.div>
       ))}
     </div>
