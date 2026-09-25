@@ -7,7 +7,7 @@ const SocialIcons = () => (
       <FaGithub />
     </a>
     <a
-      href="https://www.linkedin.com/in/vijay-korate-a40195231//"
+      href="https://www.linkedin.com/in/vijay-korate-a40195231/"
       target="_blank"
       rel="noreferrer"
     >

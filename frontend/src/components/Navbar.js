@@ -1,47 +1,99 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import SocialIcons from "./SocialIcons";
+import { AnimatePresence, motion } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeToggle from "./ThemeToggle";
 import logo from "../assets/logo.png";
 import "../styles/Navbar.css";
 
+const SECTIONS = ["home", "about", "projects", "skills", "contact"];
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("home");
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="navbar">
-      {/* LEFT: LOGO */}
-      <div className="navbar-left">
-        <img src={logo} alt="Vijay Korate Logo" className="logo-img" />
-        <h2 className="logo-text">VIJAY</h2>
-      </div>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      <a href="#home" className="navbar-left">
+        <img src={logo} alt="Vijay Korate logo" className="logo-img" />
+        <span className="logo-text">
+          Vijay<span className="logo-dot">.</span>
+        </span>
+      </a>
 
-      {/* CENTER: NAV LINKS */}
-      <ul className={`nav-center ${menuOpen ? "open" : ""}`}>
-        {["home", "about", "projects", "skills", "contact"].map((section) => (
+      <ul className="nav-center">
+        {SECTIONS.map((section) => (
           <li key={section}>
             <ScrollLink
               to={section}
+              spy
               smooth
               duration={500}
               offset={-70}
-              onClick={() => setMenuOpen(false)}
+              onSetActive={() => setActive(section)}
+              className={`nav-link ${active === section ? "active" : ""}`}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
+              {active === section && (
+                <motion.span layoutId="nav-underline" className="nav-underline" />
+              )}
             </ScrollLink>
           </li>
         ))}
       </ul>
 
-      {/* RIGHT: SOCIAL + THEME */}
       <div className="navbar-right">
-        <SocialIcons />
         <ThemeToggle />
-        {/* Hamburger button */}
-        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-          &#9776;
+        <ScrollLink
+          to="contact"
+          smooth
+          duration={500}
+          offset={-70}
+          className="nav-cta"
+        >
+          Let’s talk
+        </ScrollLink>
+        <button
+          className="hamburger"
+          aria-label="Toggle menu"
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.ul
+            className="nav-mobile"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+          >
+            {SECTIONS.map((section) => (
+              <li key={section}>
+                <ScrollLink
+                  to={section}
+                  smooth
+                  duration={500}
+                  offset={-70}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </ScrollLink>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
